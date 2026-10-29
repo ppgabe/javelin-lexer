@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
     debug_output_stream = stderr;
 
     if (argc <= 1) {
-        fprintf(stderr, "USAGE: javelin_lexer [filename ...]\n");
+        fprintf(stderr, "USAGE: jvlex [filename ...]\n");
 
         return 1;
     }
