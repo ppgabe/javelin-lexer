@@ -26,7 +26,7 @@ static Token scan_string(LexerState *l);
 static Token scan_operator(LexerState *l);
 
 void lexer_init(LexerState *l, const char *source) {
-    *l = (LexerState){.source = source, .cursor = source, .line = 1, .column = 1, .previous_column = 0};
+    *l = (LexerState){.source = source, .cursor = source, .line = 1, .column = 1};
 }
 
 static char peek(const LexerState *l) {
@@ -37,7 +37,6 @@ static char advance(LexerState *l) {
     char c = *l->cursor++;
 
     if (c == '\n') {
-        l->previous_column = l->column;
         l->line++;
         l->column = 1;
     } else {
@@ -45,20 +44,6 @@ static char advance(LexerState *l) {
     }
 
     return c;
-}
-
-static void retract(LexerState *l, const int count) {
-    for (int i = 0; i < count; i++) {
-        char c = *--l->cursor;
-
-        if (c == '\n') {
-            l->line--;
-            l->column = l->previous_column;
-            l->previous_column = 0;
-        } else {
-            l->column--;
-        }
-    }
 }
 
 static void skip_whitespace(LexerState *l) {

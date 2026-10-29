@@ -9,7 +9,6 @@ typedef struct {
     const char *cursor;
     int line;
     int column;
-    int previous_column;
 } LexerState;
 
 // Stream that receives the lexer's debug logs (whitespace skipping), defaulting to stderr.
