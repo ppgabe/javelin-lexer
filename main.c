@@ -8,17 +8,33 @@ static long get_file_size(FILE *file);
 static int lexer(char *buffer);
 
 static void get_ident_or_reserved_word(char *cursor);
+static FILE *debug_output_stream = NULL;
 
 int main(int argc, char *argv[]) {
+    debug_output_stream = stderr;
+
     if (argc <= 1) {
         fprintf(stderr, "USAGE: javelin_lexer [filename ...]\n");
 
         return 1;
     }
 
+    int debug_arg_index = -1;
     for (int i = 1; i < argc; i++) {
-        const char* filename = argv[i];
-        const char* filetype = NULL;
+        if (strcmp(argv[i], "--debug") == 0) {
+            printf("Debug logging enabled. Debug logs will be printed in stdout.\n");
+
+            debug_arg_index = i;
+            debug_output_stream = stdout;
+            break;
+        }
+    }
+
+    for (int i = 1; i < argc; i++) {
+        if (i == debug_arg_index) { continue; }
+
+        const char *filename = argv[i];
+        const char *filetype = NULL;
 
         int filename_length = 0;
         while (*filename++ != '\0') {
@@ -68,15 +84,23 @@ long get_file_size(FILE *file) {
 
 int lexer(char *buffer) {
     char *cursor = buffer;
+    int line = 1;
+    int column = 1;
 
     while (*cursor != '\0') {
         switch (*cursor) {
             case ' ':
             case '\t':
             case '\r':
-            case '\n':
+                fprintf(debug_output_stream, "Skipped whitespace at line %d, column %d...\n", line, ++column);
                 cursor++;
-                continue; // Skip all whitespace characters
+                continue;
+            case '\n':
+                fprintf(debug_output_stream, "New line at line %d, column %d...\n", line++, ++column);
+                column = 1;
+                cursor++;
+                continue;
+            // Skip all whitespace characters
             default:
                 if (isalpha(*cursor)) {
                     get_ident_or_reserved_word(cursor);
