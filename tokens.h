@@ -21,7 +21,7 @@ typedef enum {
     TOKEN_STRING_LIT,
     TOKEN_INT_LIT,
 
-    // NOISE WORDS AND COMMENTS (ignored by a parser, but still recorded in the symbol table)
+    // NOISE WORDS AND COMMENTS
     TOKEN_NOISE,
     TOKEN_COMMENT,
 
