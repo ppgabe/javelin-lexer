@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 
         filetype = argv[i] + (filename_length - 5);
 
-        if (strcmp(filetype, ".jvln") != 0) {
+        if (filename_length < 5 || (filetype - argv[i] >= 0 && strcmp(filetype, ".jvln") != 0)) {
             fprintf(stderr, "This lexer only recognizes Javelin source code (.jvln).\n");
 
             return 2;
