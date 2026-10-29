@@ -1,0 +1,16 @@
+# This is a simple Javelin source file.
+fun main() {
+    val x = 1;
+    val y = 2;
+    val z = x + y;
+
+    # The following string literal is invalid because it is unclosed.
+    val unclosedString = "This is an unclosed string
+
+    println(unclosedString);
+
+    # The following int literal is invalid because it is not a valid hexadecimal number.
+    val invalidNumber = 0xnnn;
+
+    println(z);
+}

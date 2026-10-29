@@ -1,0 +1,20 @@
+# This is a more involved Javelin source file.
+fun main() {
+    val a = 0xFF;
+    val b = 0b1010;
+    val sumOfBoth = sum(a, b);
+
+    if (sumOfBoth > 10) {
+        println("The sum is greater than 10");
+    } else {
+        println("The sum is less than or equal to 10");
+    }
+
+    val modulo = sumOfBoth % 3;
+    println(modulo);
+    println("This is a print statement");
+}
+
+fun sum(a: int, b: int) {
+    return a + b;
+}

@@ -3,4 +3,7 @@ project(javelin_lexer C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(javelin_lexer main.c)
+add_executable(javelin_lexer main.c
+        lexer.c
+        lexer.h
+        tokens.h)
