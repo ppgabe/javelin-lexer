@@ -82,9 +82,6 @@ static void write_csv_text(FILE *out, const char *text, const int length) {
     fputc('"', out);
 
     for (int i = 0; i < length; i++) {
-        if (text[i] == '"') {
-            fputc('"', out);
-        }
         fputc(text[i], out);
     }
 
