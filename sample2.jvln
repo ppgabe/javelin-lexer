@@ -13,6 +13,14 @@ fun main() {
     val modulo = sumOfBoth % 3;
     println(modulo);
     println("This is a print statement");
+
+    val condition: bool = true;
+
+    val index = 1;
+    while (bool and index < 11) {
+        println(i);
+        i += 1;
+    }
 }
 
 fun sum(a: int, b: int) {

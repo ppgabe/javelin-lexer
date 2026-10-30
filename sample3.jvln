@@ -1,0 +1,6 @@
+val myChar = '1';
+val myString = "this is a string";
+
+# The first character literal inside println() will fail because it is not a
+# single UTF-8 code unit.
+if then { println('😆'); } else then { println("🫠") }
